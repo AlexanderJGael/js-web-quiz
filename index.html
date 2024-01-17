@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Assets/css/reset.css" />
     <link rel="stylesheet" href="./Assets/css/style.css" />
+    <script src="./Assets/js/script.js"></script>
     <title>Document</title>
 </head>
 
 <div class="background">
-
     <!-- Webpage Banner (CReplicated from Portfolio project)-->
     <header>
-
     <div class="container" id="header-div">
         <div class="container" id="h1-div">
             <h1 id="header-name">Alex <br/> Gael</h1>
         </div>
 
         <div class="container" id="logo-div" >
-            <img src="https://github.com/AlexanderJGael/02-portfolio-website/blob/main/assets/images/A.png?raw=true" id="header-logo" />
+            <a href="#"><img src="https://github.com/AlexanderJGael/02-portfolio-website/blob/main/assets/images/A.png?raw=true" id="header-logo">
+            </img></a>
         </div>
 
         <div class="container" id="navbar-div">
@@ -32,11 +32,17 @@
             </nav>
         </div>
     </div>
-
-
     </header>
-
+</div>
+<div id="timer"><h2>0</h2></div>
 <body>
-    
+    <div class="cardContainer">
+        <div class="card" id="startCard">
+            <h2>Kingdom Hearts Quiz</h2>
+            <p>Can you find all the correct answers before time runs out?
+            </p>
+            <button id="startButton">Start Quiz</button>
+        </div>
+    </div>
 </body>
 </html>

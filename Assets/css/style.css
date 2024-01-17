@@ -9,14 +9,6 @@
     --background-blend: rgba(255, 255, 255, 0.619)
     }
 
-/* Set background image */
-Body {
-    background-attachment: fixed;
-    background-attachment: fixed;
-    background-image: url("https://github.com/AlexanderJGael/02-portfolio-website/blob/main/assets/images/pink-sky.jpeg?raw=true");
-    background-size: cover;
-}
-
 /* Apply low opacity color over background for visibility */
 .background {
     background-color: var(--background-blend);
@@ -94,6 +86,57 @@ header div {
     text-transform: uppercase;
     font-weight: bold;
     /* change color */
-    color: var(--amethyst);
+    color: var(--mauve);
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a:hover {
+    color: white;
+}
+
+/* Set background image */
+body {
+    background-attachment: fixed;
+    background-attachment: fixed;
+    background-image: url("https://github.com/AlexanderJGael/02-portfolio-website/blob/main/assets/images/pink-sky.jpeg?raw=true");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 50rem;
+    height: 50rem;
+    background-color: rgba(255, 255, 255, 0.201);
+    backdrop-filter: blur(1rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+    border-radius: 1rem;
+    text-align: center;
+    color: white;
+}
+
+button {
+    background-color: var(--deep-pink);
+    padding: .75rem;
+    margin-top: 2.5rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 1rem;
+    border-style: none;
+}
+
+#timer {
+    position: absolute;
+    top: 5rem;
+    font-size: 3rem;
 }
