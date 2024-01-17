@@ -1,0 +1,99 @@
+/* Some styles from Portfolio Project */
+
+:root {
+    --blue: #2C40B0ff;
+    --amethyst: #9C67D9ff;
+    --deep-pink: #FE0099ff;
+    --periwinkle: #C1B2F0ff;
+    --mauve: #CFB5F1ff;
+    --background-blend: rgba(255, 255, 255, 0.619)
+    }
+
+/* Set background image */
+Body {
+    background-attachment: fixed;
+    background-attachment: fixed;
+    background-image: url("https://github.com/AlexanderJGael/02-portfolio-website/blob/main/assets/images/pink-sky.jpeg?raw=true");
+    background-size: cover;
+}
+
+/* Apply low opacity color over background for visibility */
+.background {
+    background-color: var(--background-blend);
+}
+
+/* Adjusts entire header object */
+header {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.099);
+    backdrop-filter: blur(3px);
+}
+
+/* adjust the div containing header elements */
+#header-div {
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem 0 .5rem 0;
+}
+
+/* sets flex for all containers in header section */
+header div {
+    flex: 1 1 1;
+}
+
+/* "ALEX GAEL" header block */
+#header-name {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 22.5vw;
+    line-height: .8;
+    text-align: right;
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: .5rem .5rem .5rem 0;
+    margin: 0;
+    /* colouring temporary. Replace after frame is built */
+    color: white;
+    background-color: var(--periwinkle);
+}
+
+/* Header Logo Settings */
+#header-logo {
+    height: 5rem;
+    border-radius: 50rem;
+    margin-bottom: .5rem;
+}
+
+#logo-div {
+    height: 5rem;
+    width: auto;
+    text-align: center;
+}
+
+/* Banner Nav */
+.navbar ul {
+    width: 22.5vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1.5rem;
+    font-size: 1.5rem
+}
+
+.navbar a {
+    padding-left: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    /* change color */
+    color: var(--amethyst);
+    font-family: Arial, Helvetica, sans-serif;
+}
