@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Assets/css/reset.css" />
     <link rel="stylesheet" href="./Assets/css/style.css" />
-    <script src="./Assets/js/script.js"></script>
-    <title>Document</title>
+        <title>Document</title>
 </head>
 
 <div class="background">
@@ -25,8 +24,8 @@
         <div class="container" id="navbar-div">
              <nav class="navbar">
                 <ul>
-                    <li><a href="#about-me" id="nav-about">About</a></li>
-                    <li><a href="#portfolio" id="nav-portfolio">Portfolio</a></li>
+                    <li><a href="#highscores" id="nav-highscores">Highscores</a></li>
+                    <li><a href="#about-page" id="nav-about">About</a></li>
                     <li><a href="#contact-me" id="nav-contact">Contact</a></li>
                 </ul>
             </nav>
@@ -34,15 +33,24 @@
     </div>
     </header>
 </div>
-<div id="timer"><h2>0</h2></div>
+<h2 id="timer"></h2>
 <body>
     <div class="cardContainer">
-        <div class="card" id="startCard">
-            <h2>Kingdom Hearts Quiz</h2>
-            <p>Can you find all the correct answers before time runs out?
-            </p>
+        <div class="card" id="quiz">
+            <h2 id="cardHeader">Kingdom Hearts Quiz</h2>
+            <p>Can you find all the correct answers before time runs out?</p>
             <button id="startButton">Start Quiz</button>
+            <button style="display: none;" class="trueButton" id="buttonOne"></button>
+            <button style="display: none;" class="falseButton" id="buttonTwo"></button>
+            <button style="display: none;" class="falseButton" id="buttonThree"></button>
+            <button style="display: none;" class="falseButton" id="buttonFour"></button>
         </div>
+<!--         <div style="display: none;" class="card questionCard" id="firstQuestion">
+            <h2>Donald Duck is more powerful than Bahamut:</h2>
+            <button id="trueButton donaldTrue">True</button>
+            <button id="falseButton donaldFalse">False</button>
+        </div> -->
     </div>
 </body>
+<script src="./Oops/script.js"></script>
 </html>
