@@ -62,8 +62,8 @@ function endGame() {
 
   submitScore.click(function() {
     console.log(userInput.val() + " - " + playerScore + "/5");
+    highScoresList();
   });
-  highScoresList();
 };
 
 function startTimer() {
