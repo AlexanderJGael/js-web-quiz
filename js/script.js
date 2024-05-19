@@ -1,10 +1,10 @@
-const bodyEl = $("body");
-var quizEl = $(".quiz");
-var quizHeader = $("<h2></h2>").text("Kingdom Hearts Quiz");
-var quizText = $("<p></p>").text("Can you find all the correct answers before time runs out?")
-var startButton = $("<button></button>").addClass("startButton").text("Start Quiz");
+const bodyEl = $("body").addClass('container-fluid py-5 text-center flex-column align-items-center justify-content-center');
+var quizEl = $(".quiz").addClass('card-body text-center');
+var quizHeader = $("<h2></h2>").addClass("py-2 m-4 fw-bold card-header text-center").text("Kingdom Hearts Quiz");
+var quizText = $("<p></p>").addClass(" py-3 m-2 text-body text-center").text("Can you find all the correct answers before time runs out?")
+var startButton = $("<button></button>").addClass("btn rounded-pill btn-primary text-center").text("Start Quiz");
 var timer = 60;
-var timerEl = $("<h2></h2>").text(timer)
+var timerEl = $("<h1></h1>").addClass("text-center").text(timer);
 var currentQuestion = 0;
 var playerScore = 0;
 let timerDisplayed = false;
@@ -21,7 +21,7 @@ var quizEntries = [
     question: "Which character was NOT 'Norted'?",
     choices: ["Larxene", "Riku", "Aqua", "Xigbar"],
     correctAnswer: "Aqua",
-    alertText: "Though she temporarily lost herself to the darkness, Aqua was never one of Xehanort's vessels."
+    alertText: "though she temporarily lost herself to the darkness, Aqua was never one of Xehanort's vessels."
   },
   {
     question: "Which character does Sora first encounter in Traverse Town?",
@@ -33,7 +33,7 @@ var quizEntries = [
     question: "What is the identity Master of Masters?",
     choices: ["Sora", "Demyx", "Luxord", "None of the Above"],
     correctAnswer: "None of the Above",
-    alertText: "Though there are many theories on the identity of the Master of Masters, it has not yet been revealed."
+    alertText: "though there are many theories on the identity of the Master of Masters, it has not yet been revealed."
   },
   {
     question: "How many Kingdom Hearts games have been released as of January 2024?",
@@ -46,12 +46,12 @@ var quizEntries = [
 function highScoresList() {
   const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
   quizEl.empty
-  const highScoresList = $("<ul></ul>");
+  const highScoresList = $("<ul></ul>").addClass("flex-column align-items-center justify-content-center list-group");
   for (let i = 0; i < highScores.length; i++) {
-    const highScoreItem = $("<li></li>").text(highScores[i].initials + " - " + highScores[i].score + "/5");
+    const highScoreItem = $("<li></li>").addClass("list-group-item").text(highScores[i].initials + " - " + highScores[i].score + "/5");
     highScoresList.append(highScoreItem);
   }
-  const restartButton = $("<button></button>").text("Restart?");
+  const restartButton = $("<button></button>").addClass("btn rounded-pill px-3 btn-primary").text("Restart?");
   highScoresList.append(restartButton);
   restartButton.click(function(event) {
     event.preventDefault();
@@ -65,17 +65,18 @@ function endGame() {
   timerEl.hide();
   timerEl.empty();
   quizEl.empty();
-  var finalScore = $("<h2></h2>").text("Your final score is: " + playerScore + "/5");
+  var finalScore = $("<h2></h2>").addClass("card-header m-4 py-3 text-center").text("Your final score is: " + playerScore + "/5");
   quizEl.append(finalScore);
-  var highScores = $("<h2></h2>").text("Highscores");
+  var highScores = $("<h3></h3>").addClass("fw-bold m-3text-center").text("Highscores");
   quizEl.append(highScores);
   userInput = $("<input></input>")
+    .addClass("m-3 text-center")
     .attr("placeholder", "Player Initials")
     .attr("input", "text")
     .val("");
   userInput = userInput;
   quizEl.append(userInput);
-  var submitScore = $("<button></button>").text("Submit");
+  var submitScore = $("<button></button>").addClass("btn rounded-pill btn-primary").text("Submit");
   quizEl.append(submitScore);
 
   submitScore.click(function() {
@@ -151,16 +152,24 @@ function generateQuiz() {
   var correctAnswer = quizEntries[currentQuestion].correctAnswer;
     
   quizEntries[currentQuestion].choices.forEach(function(choice) {
+    const choicesEl = $("<div></div>").addClass("px-5 m-2");
+    const choicesList = $("<ul></ul>").addClass("list-unstyled");
+    const choiceItem = $("<li></li>").addClass("p-2 w-100 list-item");
+    quizEl.append(choicesEl);
+    choicesEl.append(choicesList);
+    choicesList.append(choiceItem);
+
     var quizChoices = $("<button></button>")
       .text(choice)
+      .addClass("btn rounded-pill btn-primary")
       .click(function() {
         if (quizChoices.text() == correctAnswer) {
           handleCorrect();
-          } else {
+        } else {
           handleIncorrect();
         };
       });
-      quizEl.append(quizChoices);
+    choiceItem.append(quizChoices);
   });
 };
 
