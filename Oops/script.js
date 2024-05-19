@@ -1,3 +1,4 @@
+const bodyEl = $("body");
 var quizEl = $(".quiz");
 var quizHeader = $("<h2></h2>").text("Kingdom Hearts Quiz");
 var quizText = $("<p></p>").text("Can you find all the correct answers before time runs out?")
@@ -6,6 +7,7 @@ var timer = 60;
 var timerEl = $("<h2></h2>").text(timer)
 var currentQuestion = 0;
 var playerScore = 0;
+let timerDisplayed = false;
 
 /* Hold the values for each question */
 var quizEntries = [
@@ -42,13 +44,29 @@ var quizEntries = [
 ];
 
 function highScoresList() {
-  quizEl.empty()
-  confirm("Build 'highScoreList' function");
-}
+  const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+  quizEl.empty
+  const highScoresList = $("<ul></ul>");
+  for (let i = 0; i < highScores.length; i++) {
+    const highScoreItem = $("<li></li>").text(highScores[i].initials + " - " + highScores[i].score + "/5");
+    highScoresList.append(highScoreItem);
+  }
+  const restartButton = $("<button></button>").text("Restart?");
+  highScoresList.append(restartButton);
+  restartButton.click(function(event) {
+    event.preventDefault();
+    location.reload();
+  })
+  quizEl.append(highScoresList);
+};
 
 function endGame() {
+  timerDisplayed = false;
+  timerEl.hide();
   timerEl.empty();
   quizEl.empty();
+  var finalScore = $("<h2></h2>").text("Your final score is: " + playerScore + "/5");
+  quizEl.append(finalScore);
   var highScores = $("<h2></h2>").text("Highscores");
   quizEl.append(highScores);
   userInput = $("<input></input>")
@@ -61,20 +79,43 @@ function endGame() {
   quizEl.append(submitScore);
 
   submitScore.click(function() {
-    console.log(userInput.val() + " - " + playerScore + "/5");
+    const userScore = {
+      initials: userInput.val(),
+      score: playerScore
+    };
+    let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    if (!Array.isArray(highScores)) {
+      highScores = [highScores];
+    }
+    highScores.push(userScore);
+    localStorage.setItem("highScores", JSON.stringify(highScores));
     highScoresList();
   });
 };
 
 function startTimer() {
-  confirm("Build 'startTimer' function")
+  let timer = 60;
+  timerEl.show();
+  const timerInterval = setInterval(function() {
+    if (!timerDisplayed) {
+      const timerInterval = setInterval(function () {
+        timer--;
+        timerEl.text(timer);
+        if (timer <= 0) {
+          clearInterval(timerInterval);
+          endGame();
+        }
+      }, 1000);
+      timerDisplayed = true;
+    }
+  })
 };
 
 function updateTimer() {
   confirm("Build 'updateTimer' function!");
 };
 
-/* Update player score and display alert */
+/* Updates player score and display alert */
 function handleCorrect() {
   alert("Correct!" + "\n\n" + quizEntries[currentQuestion].alertText);
   playerScore++;
@@ -87,13 +128,12 @@ function handleCorrect() {
   };
 };
 
-/* Update timer and display alert */
+/* Updates timer and display alert */
 function handleIncorrect() {
   alert("Incorrect!" + "\n\n" + quizEntries[currentQuestion].alertText);
   playerScore = playerScore;
   console.log(playerScore);
-/*   timer -= 10;
-  console.log(timer); */
+  timer -= 10;
   currentQuestion++;
   if (currentQuestion < quizEntries.length && timer > 0) {
     generateQuiz();
@@ -102,7 +142,7 @@ function handleIncorrect() {
   };
 };
 
-/* Generate ethe question elements and text */
+/* Generates the question elements and text */
 function generateQuiz() {
   quizEl.empty();
 
@@ -129,7 +169,11 @@ $(function() {
   quizEl.append(quizHeader);
   quizEl.append(quizText);
   quizEl.append(startButton);
+  bodyEl.append(timerEl);
+  bodyEl.append(quizEl);
 
+  timerEl.hide();
+  
   startButton.click(function() {
     startTimer();
     $(".startButton").hide();
