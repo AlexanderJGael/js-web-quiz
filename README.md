@@ -16,5 +16,5 @@ To get started with the app, simply open the `index.html` file in a web browser.
 ## Usage
 To play the quiz, simply click the "Start Quiz" button. The app will generate a question and display four multiple-choice options. The player can select the correct answer by clicking on the corresponding button. If the player selects the correct answer, their score will be increased by one. If the player selects the incorrect answer, their score will remain the same, but the timer will be decreased by 10 seconds.
 
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+## License
+This project is licensed under the MIT License.
